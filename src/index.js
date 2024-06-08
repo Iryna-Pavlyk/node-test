@@ -15,5 +15,5 @@ console.log(parseSomePath);
 const fileContent = await fs.readFile('path_to_file');
 console.log(fileContent);
 
-// const buffer = await fs.readFile('hello.txt');
-// console.log(buffer.toString('utf-8'));
+const buffer = await fs.readFile('hello.txt');
+console.log(buffer.toString('utf-8'));
