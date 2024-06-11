@@ -1,15 +1,16 @@
-import path from 'node:path';
-import fs from 'node:fs/promises';
+// import path from 'node:path';
+// import fs from 'node:fs/promises';
+import express from 'express';
 
 // const message = 'Hello world!';
 
-const workDir = path.join(process.cwd());
-const joinSomePath = path.join(workDir, 'folder', 'text.txt');
+// const workDir = path.join(process.cwd());
+// const joinSomePath = path.join(workDir, 'folder', 'text.txt');
 // const parseSomePath = path.parse(
 //   'D:Робочий стілІраНавчання\node-test\folder\text.txt',
 // );
 // console.log(message);
-console.log(joinSomePath);
+// console.log(joinSomePath);
 // console.log(parseSomePath);
 
 // const readContent = async () => {
@@ -79,20 +80,40 @@ console.log(joinSomePath);
 
 // readDir();
 
-const accesPath = async () => {
-  const path = 'src/hello.txt';
-  try {
-    await fs.access(path);
-    console.log(`Файл або каталог '${path}' доступний.`);
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      console.log(`Файл або каталог '${path}' не існує`);
-    }
-    console.log(
-      `Помилка перевірки доступності файлу або каталогу '${path}':`,
-      error,
-    );
-  }
-};
+// const accesPath = async () => {
+//   const path = 'src/hello.txt';
+//   try {
+//     await fs.access(path);
+//     console.log(`Файл або каталог '${path}' доступний.`);
+//   } catch (error) {
+//     if (error.code === 'ENOENT') {
+//       console.log(`Файл або каталог '${path}' не існує`);
+//     }
+//     console.log(
+//       `Помилка перевірки доступності файлу або каталогу '${path}':`,
+//       error,
+//     );
+//   }
+// };
 
-accesPath();
+// accesPath();
+
+// -------Lesson 2-------------
+const app = express();
+
+const PORT = 3000;
+
+app.use((req, res, next) => {
+  console.log(`Time: ${new Date().toLocaleString()}`);
+  next();
+});
+
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Hello world!',
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
