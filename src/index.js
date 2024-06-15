@@ -6,6 +6,7 @@
 // import express from 'express';
 // import pino from 'pino-http';
 // import cors from 'cors';
+import { initMongoDB } from './db/initMongoDB.js';
 import { startServer } from './server.js';
 // -----Lesson 2-----
 
@@ -149,5 +150,11 @@ import { startServer } from './server.js';
 //   console.log(`Server is running on port ${PORT}`);
 // });
 
-startServer();
+const bootstrap = async () => {
+  await initMongoDB;
+  startServer();
+};
+
+bootstrap();
+
 // -------Lesson 2-------------
